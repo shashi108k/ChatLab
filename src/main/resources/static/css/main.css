@@ -1,0 +1,34 @@
+.container {
+	/* background-color: #ffff80; */
+}
+
+.chat-window {
+	margin: 0% 22% 0% 22%;
+}
+
+.chat {
+	background-color: #c0c0c0;
+}
+
+.liveScore{
+   margin: 0% 22% 0% 22%;
+   font-weight:600;
+   font-size: 20px;
+}
+
+.table {
+    width: 80%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ffffff;
+}
+
+li{
+ list-style: none;
+ padding:0px 0px 10px 0px;
+}

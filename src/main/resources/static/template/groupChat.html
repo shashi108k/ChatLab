@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WebSocket Chat</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="../js/chat.js"></script>
+<link href="../css/main.css" rel="stylesheet">
+</head>
+<body>
+<br></br>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../index.html"> Home </a></h3>
+	<div id="main-content" class="container">
+		<div id="basic_map"></div>
+		<div style="color: #a20707;"><center><h2><b>Group Chat</b></h2></center></div>
+		<br></br>
+		<div id="chatWindow" class="chat-window">
+		<div class="row">
+			<div class="col-md-12">
+				<table id="conversation" class="table table-striped">
+					<thead>
+						<tr>
+							<th width="20%">From</th>
+							<!-- <th width="15%">Topic</th> -->
+							<th width="60%">Message</th>
+							<th width="10%">Time</th>
+						</tr>
+					</thead>
+					<tbody id="messages" class="chat">
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<br></br>
+		<div class="row space-bottom10">
+			<form>
+				<!-- <div class="col-md-2">
+					<select name="topic" id="topic" class="form-control">
+						<option>Lifestyle</option>
+						<option>Travel</option>
+						<option>Career</option>
+					</select>
+				</div> -->
+				<div class="col-md-6">
+					<input type="text" id="text" class="form-control"
+						placeholder="enter message ...">
+				</div>
+				<div class="col-md-4">
+					<button id="send" class="btn btn-primary" type="submit">Send</button>
+					<button id="disconnect" class="btn btn-danger" type="submit"
+						disabled="disabled">Disconnect</button>
+				</div>
+			</form>
+		</div>
+		</div>
+		
+		<br></br>
+		<div id="login" class="row" style="margin-left:38%">
+			<div class="col-md-12 space-bottom10">
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="from">Name:</label> <input type="text" id="from"
+							class="form-control" placeholder="enter your name...">
+					</div><br><br>
+					<button id="connect" class="btn btn-primary" style="margin-left:8%" type="submit">Connect</button>
+					<!-- <button id="disconnect" class="btn btn-danger" type="submit"
+						disabled="disabled">Disconnect</button> -->
+				</form>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

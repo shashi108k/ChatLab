@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WebSocket Client</title>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script> -->
+<!-- <script src="ng-stomp.standalone.min.js"></script> -->
+
+</head>
+<body >
+<div class="liveScore" ng-app="laboratory" ng-controller="liveScoreController">
+   <p style="color : #a20707;">Cricket - Live Score</p><br><br>
+    
+    <table class="table table-striped" width="80%">
+    	<tr ng-repeat="x in response" style="font-size:16px">
+	   		<td> {{x.name}}* - <b style="font-size:40px;">{{x.runs}}</b> runs (<b style="font-size:40px;">{{x.balls}}</b> balls) <br> </td>
+    	</tr>
+    </table>
+    <!-- <ul>
+     	<li ng-repeat="x in response">{{$index+1}} - {{x[0].user.screenName}} :: {{x[0].createdAt}} : {{x[0].text}} </li> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <li ng-repeat="x in response">{{$index+1}} - {{x.name}} - <b>{{x.runs}}</b> runs (<b>{{x.balls}}</b>balls)</li><br>
+    </ul> -->
+   
+    <!-- 
+    <p ng-repeat="x in response">
+   		{{$index+1}} - {{x[0].user.screenName}} :: {{x[0].createdAt}} : {{x[0].text}} 
+    </p>
+     -->
+    
+</div>    
+</body>
+</html>

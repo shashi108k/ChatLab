@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script> -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/ng-stomp.standalone.min.js"></script>
+<link href="css/main.css" rel="stylesheet">
+
+<body ng-app="laboratoryApp">
+<br>
+<nav> 
+ <h3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <i class="fa fa-television" aria-hidden="true"></i><a ui-sref="score"> Live Score </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <i class="fa fa-whatsapp" aria-hidden="true"></i><a href="template/groupChat.html"> Group Chat </a>
+    
+ </h3>
+</nav>
+
+<br></br>
+<div ui-view></div>
+
+<script>
+var app = angular.module("laboratoryApp", [ "ui.router", "laboratory"]);
+app.config(function ($stateProvider, $urlRouterProvider){
+    $stateProvider
+    .state("score", {
+        //url: "#",
+        //template: "<p>State 1</p>",
+        templateUrl: 'template/score.html',
+        controller: "liveScoreController"
+      });
+});
+
+var ctrls = angular.module('laboratory', ['ngStomp']);
+
+ctrls.controller('liveScoreController', function ($scope, $stomp) {
+    $scope.response = [];
+
+    /*
+     * A WebSocket is a communication channel which uses TCP as the underlying protocol. 
+     * It is initiated by the client sending a HTTP request to the server requesting a connection upgrade to WebSocket. 
+     * If the server supports WebSockets, the client request is granted and a WebSocket connection is established between the two parties.
+     * After this connection is established, all communication happens over the WebSocket and the HTTP protocol is no longer used.
+     */
+    $stomp.connect('http://localhost:8078/api/livescore-websocket', {})
+          .then(function (frame) {
+              var subscription = $stomp.subscribe('/topic/myscores',
+                  function (payload, headers, res) {
+                      $scope.response = payload;
+                      $scope.$apply($scope.response);
+              });
+          
+              $stomp.send('/app/score', '');
+       });
+});
+    
+</script>
+
+</body>
+</html>
